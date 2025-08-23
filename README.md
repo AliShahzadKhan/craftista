@@ -1,4 +1,4 @@
-# 🚀 DevOps Implementation – Microservices E-Commerce (Craftista)
+# DevOps Implementation – Microservices E-Commerce (Craftista)
 
 This project is a **polyglot microservices application** that I have containerized and orchestrated using **Docker** and **Docker Compose**.  
 
@@ -13,9 +13,10 @@ This project is a **polyglot microservices application** that I have containeriz
 - **Persistence**: Configured Docker volumes for MongoDB and PostgreSQL to persist data.  
 - **Networking**: Set up a custom bridge network so services can communicate with each other seamlessly.  
 
-# 🔹 How to Run
+How to Run
 ```bash
 # Clone this repository
+
 git clone https://github.com/<your-username>/craftista.git
 cd craftista
 
@@ -30,7 +31,7 @@ Frontend: http://localhost:3000
 Catalogue Service: http://localhost:5000
 Voting Service: http://localhost:8081
 Recommendation Service: http://localhost:8082
-
+```
 
 
 
