@@ -1,4 +1,4 @@
-# DevOps Implementation – Microservices E-Commerce (Craftista)
+# DevOps Implementation – Microservices (Craftista)
 
 This project is a **polyglot microservices application** that I have containerized and orchestrated using **Docker** and **Docker Compose**.  
 
