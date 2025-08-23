@@ -1,3 +1,41 @@
+# 🚀 DevOps Implementation – Microservices E-Commerce (Craftista)
+
+This project is a **polyglot microservices application** that I have containerized and orchestrated using **Docker** and **Docker Compose**.  
+
+### 🔹 My Contributions
+- **Containerization**: Wrote Dockerfiles for all microservices:  
+  - Frontend (Node.js + Express)  
+  - Catalogue (Python + Flask + MongoDB)  
+  - Voting (Java + Spring Boot + PostgreSQL)  
+  - Recommendation (Go)  
+- **Multi-Stage Builds**: Optimized images for smaller size and faster builds.  
+- **Service Orchestration**: Added `docker-compose.yml` to run all services and databases together on a single network.  
+- **Persistence**: Configured Docker volumes for MongoDB and PostgreSQL to persist data.  
+- **Networking**: Set up a custom bridge network so services can communicate with each other seamlessly.  
+
+# 🔹 How to Run
+```bash
+# Clone this repository
+git clone https://github.com/<your-username>/craftista.git
+cd craftista
+
+# Build and start all services
+docker compose up -d --build
+
+# Stop everything
+docker compose down
+
+
+Frontend: http://localhost:3000
+Catalogue Service: http://localhost:5000
+Voting Service: http://localhost:8081
+Recommendation Service: http://localhost:8082
+
+
+
+
+
+
 
 # Craftista - The Ultimate Devops Learning App
 
