@@ -1,0 +1,54 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with: 
+          node-version: '20'
+      - name: Install dependencies (frontend)
+        run: |
+          cd frontend
+          npm install
+          npm test
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with: 
+          python-version: '3.11'
+      - name: Install dependencies (catalogue)
+        run: |
+          cd catalogue
+          pip install -r requirements.txt
+          pytest
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+      - name: Run Maven tests (voting)
+        run: |
+          cd voting
+          mvn test
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.21'
+      - name: Run Go tests (recommendation)
+        run: |
+          cd recommendation
+          go test ./...    
+      

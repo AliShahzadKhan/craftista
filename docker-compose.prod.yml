@@ -1,0 +1,67 @@
+services:
+  frontend:
+    image: shahzadalikhan/frontend:latest 
+    container_name: frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - catalogue
+      - recommendation
+      - voting
+    networks:
+      - appnet
+
+  catalogue:
+    image: shahzadalikhan/catalogue:latest
+    container_name: catalogue
+    ports:
+    - "5000:5000"
+    depends_on:
+      - catalogue-db
+    networks:
+      - appnet
+
+  catalogue-db:
+    image: mongo:6
+    container_name: catalogue-db
+    volumes:
+    - catalogue_data:/data/db
+    networks:
+      - appnet
+
+  voting:
+    image: shahzadalikhan/voting:latest
+    container_name: voting
+    ports:
+      - "8081:8080"
+    depends_on:
+      - voting-db
+    networks:
+      - appnet
+
+  voting-db:
+    image: postgres:15
+    container_name: voting-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: votingdb
+    volumes:
+      - voting_data:/var/lib/postgresql/data
+    networks:
+      - appnet
+
+  recommendation:
+    image: shahzadalikhan/recommendation:latest
+    container_name: recommendation
+    ports:
+      - "8082:8080"
+    networks:
+      - appnet
+
+volumes:
+  catalogue_data:
+  voting_data:
+
+networks:
+  appnet:
