@@ -13,6 +13,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with: 
@@ -23,6 +30,13 @@ jobs:
           npm install
           npm test
 
+      - uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+               
       - name: Set up Python
         uses: actions/setup-python@v5
         with: 
@@ -32,6 +46,13 @@ jobs:
           cd catalogue
           pip install -r requirements.txt
           pytest
+      
+      - uses: actions/cache@v3
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
 
       - name: Set up JDK
         uses: actions/setup-java@v4
@@ -42,7 +63,14 @@ jobs:
         run: |
           cd voting
           mvn test
-
+       
+      - uses: actions/cache@v3
+        with:
+          path: ~/go/pkg/mod
+          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-go-
+                  
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
@@ -52,3 +80,5 @@ jobs:
           cd recommendation
           go test ./...    
       
+
+
