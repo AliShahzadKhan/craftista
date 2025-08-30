@@ -78,7 +78,7 @@ jobs:
         uses: actions/setup-go@v5
         with:
           go-version: '1.21'
-          
+
       - name: Run Go tests (recommendation)
         run: |
           cd recommendation
@@ -123,6 +123,12 @@ jobs:
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_KEY }}
           script: |
+
+            if ! command -v docker-compose &> /dev/null
+            then
+            sudo curl -L "https://github.com/docker/compose/releases/download/v2.27.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+            sudo chmod +x /usr/local/bin/docker-compose
+            fi
 
             docker compose -f docker-compose.prod.yml down
             docker system prune -af
