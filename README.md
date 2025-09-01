@@ -1,32 +1,61 @@
-# DevOps Implementation – Microservices (Craftista)
+# Craftista – DevOps Implementation of a Polyglot Microservices App
 
-This project is a **polyglot microservices application** that I have containerized and orchestrated using **Docker** and **Docker Compose**.  
+Craftista is a **polyglot microservices application** that I containerized, orchestrated, and deployed using **Docker, Docker Compose, and GitHub Actions**.  
+It demonstrates my ability to work with **multiple languages, databases, containerization, and CI/CD pipelines**
 
-### 🔹 My Contributions
-- **Containerization**: Wrote Dockerfiles for all microservices:  
-  - Frontend (Node.js + Express)  
-  - Catalogue (Python + Flask + MongoDB)  
-  - Voting (Java + Spring Boot + PostgreSQL)  
-  - Recommendation (Go)  
-- **Multi-Stage Builds**: Optimized images for smaller size and faster builds.  
-- **Service Orchestration**: Added `docker-compose.yml` to run all services and databases together on a single network.  
-- **Persistence**: Configured Docker volumes for MongoDB and PostgreSQL to persist data.  
-- **Networking**: Set up a custom bridge network so services can communicate with each other seamlessly.  
+---
 
-How to Run
-```bash
-# Clone this repository
+## 🔹 Architecture Overview
+
+- **Frontend**: Node.js + Express  
+- **Catalogue Service**: Python + Flask + MongoDB  
+- **Voting Service**: Java + Spring Boot + PostgreSQL  
+- **Recommendation Service**: Go  
+
+**Databases:**  
+- MongoDB (for Catalogue)  
+- PostgreSQL (for Voting)  
+
+**Orchestration:** Docker Compose  
+**Deployment:** AWS EC2 via GitHub Actions  
+
+---
+
+## 🛠️ My Contributions
+
+- **Containerization**  
+  - Wrote `Dockerfile`s for all microservices.  
+  - Used **multi-stage builds** to reduce image size & optimize build times.  
+
+- **Service Orchestration**  
+  - Wrote `docker-compose.prod.yml` to run all services + databases together.  
+  - Configured a custom bridge network for inter-service communication.  
+
+- **Persistence**  
+  - Used Docker volumes for MongoDB & PostgreSQL to persist data.  
+
+- **CI/CD Pipeline**  
+  - Automated build & push of images to DockerHub using **GitHub Actions**.  
+  - Configured auto-deployment to AWS EC2 with `docker-compose`.  
+
+---
+
+## 🚀 How to Run Locally
+
+### 1. Clone this repository
+```
 
 git clone https://github.com/<your-username>/craftista.git
 cd craftista
+```
 
-# Build and start all services
-docker compose up -d --build
+### 2. Build and start all services
+docker compose -f docker-compose.dev.yml up -d --build
 
-# Stop everything
-docker compose down
+### 3. Stop everything
+docker compose -f docker-compose.dev.yml down
 
-
+```
 Frontend: http://localhost:3000
 Catalogue Service: http://localhost:5000
 Voting Service: http://localhost:8081
